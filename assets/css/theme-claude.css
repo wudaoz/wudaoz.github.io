@@ -587,53 +587,115 @@ body.theme-claude strong {
   color: var(--claude-text);
 }
 
-/* --- Responsive --- */
-  @media (max-width: 1080px) {
-    body.theme-claude .wrapper {
-      width: 100%;
-      flex-direction: column;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
-
-    body.theme-claude .sidebar {
-      width: 100%;
-      position: static;
-      height: auto;
-      padding: 48px 0 24px;
-      overflow: visible;
-    }
-
-    body.theme-claude .content {
-      padding: 32px 0 48px;
-    }
-
-    body.theme-claude .site-footer {
-      padding: 32px 0;
-    }
-
-    body.theme-claude .site-footer p {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    body.theme-claude .image.avatar img {
-      width: 140px;
-      height: 140px;
-    }
-
-    body.theme-claude .theme-switcher {
-      bottom: 16px;
-      right: 16px;
-    }
+/* --- Responsive: Tablet --- */
+@media (max-width: 1080px) {
+  body.theme-claude .wrapper {
+    width: 100%;
+    flex-direction: column;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
 
+  body.theme-claude .sidebar {
+    width: 100%;
+    position: static;
+    left: auto;
+    height: auto;
+    padding: 80px 0 24px;
+    overflow: visible;
+  }
+
+  body.theme-claude .content {
+    margin-left: 0;
+    padding: 32px 0 48px;
+  }
+
+  body.theme-claude .site-footer {
+    padding: 32px 0;
+  }
+
+  body.theme-claude .site-footer p {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  body.theme-claude .image.avatar img {
+    width: 140px;
+    height: 140px;
+  }
+
+  body.theme-claude .theme-switcher {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  body.theme-claude .sidebar-map {
+    margin: 24px auto 0;
+  }
+}
+
+/* --- Responsive: Mobile --- */
 @media (max-width: 480px) {
+  body.theme-claude .wrapper {
+    padding: 0 16px;
+  }
+
+  body.theme-claude .sidebar {
+    padding: 72px 0 16px;
+  }
+
+  body.theme-claude .image.avatar img {
+    width: 120px;
+    height: 120px;
+  }
+
+  body.theme-claude .site-name {
+    font-size: 22px;
+  }
+
+  body.theme-claude .content {
+    margin-left: 0;
+    padding: 24px 0 40px;
+  }
+
   body.theme-claude .card {
     padding: 14px 16px;
   }
 
   body.theme-claude .section {
     margin-bottom: 32px;
+  }
+
+  body.theme-claude .section-title {
+    font-size: 17px;
+  }
+
+  body.theme-claude .publications ol.bibliography li {
+    padding: 12px 0 12px 12px;
+  }
+
+  body.theme-claude .publications ol.bibliography li .title {
+    font-size: 14px;
+  }
+
+  body.theme-claude .publications ol.bibliography li .author,
+  body.theme-claude .publications ol.bibliography li .periodical {
+    font-size: 13px;
+  }
+
+  body.theme-claude .experience-item {
+    flex-direction: column;
+  }
+
+  body.theme-claude .institution-logo {
+    margin-bottom: 8px;
+  }
+
+  body.theme-claude .nav-container {
+    padding: 0 16px;
+  }
+
+  body.theme-claude .award-text {
+    font-size: 13px;
   }
 }
