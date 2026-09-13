@@ -170,5 +170,59 @@ class TimelineStyleTest(unittest.TestCase):
             self.assertIn("height: 12px;", declarations, relative_path)
 
 
+class TypographyStyleTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.html = (ROOT / "index.html").read_text(encoding="utf-8")
+        cls.css = (ROOT / "assets/css/theme-claude.css").read_text(encoding="utf-8")
+
+    def test_approved_google_fonts_are_loaded(self):
+        self.assertIn(
+            "family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600",
+            self.html,
+        )
+        self.assertIn("family=Source+Sans+3:wght@400;500;600;700", self.html)
+        self.assertIn("display=swap", self.html)
+
+    def test_theme_defines_editorial_and_interface_stacks(self):
+        self.assertIn(
+            '--claude-font-editorial: "Newsreader", Georgia, "Times New Roman", serif;',
+            self.css,
+        )
+        self.assertIn(
+            '--claude-font-interface: "Source Sans 3", -apple-system, '
+            'BlinkMacSystemFont, "Segoe UI", sans-serif;',
+            self.css,
+        )
+
+    def test_type_roles_are_mapped(self):
+        self.assertRegex(
+            self.css,
+            r"body\.theme-claude\s*\{[^}]*font-family: "
+            r"var\(--claude-font-editorial\);",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.top-nav\s*\{[^}]*font-family: var\(--claude-font-interface\);",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.publications\s*\{[^}]*font-family: "
+            r"var\(--claude-font-interface\);",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.site-footer\s*\{[^}]*font-family: "
+            r"var\(--claude-font-interface\);",
+        )
+
+    def test_email_keeps_monospace_role(self):
+        match = re.search(r"\.site-email\s*\{([^}]+)\}", self.css)
+        self.assertIsNotNone(match)
+        self.assertIn(
+            'font-family: "Ubuntu Mono", "SF Mono", monospace;', match.group(1)
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
