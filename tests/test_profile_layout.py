@@ -223,6 +223,33 @@ class TypographyStyleTest(unittest.TestCase):
             'font-family: "Ubuntu Mono", "SF Mono", monospace;', match.group(1)
         )
 
+    def test_selected_typography_metrics_match_the_1b_preview(self):
+        expected_rules = {
+            ".site-name": (
+                "font-family: var(--claude-font-editorial);",
+                "font-size: 31px;",
+                "font-weight: 600;",
+                "line-height: 1.05;",
+            ),
+            ".section-title": (
+                "font-family: var(--claude-font-editorial);",
+                "font-size: 20px;",
+                "font-weight: 600;",
+                "line-height: 1.2;",
+            ),
+            "#about-me .section-body": (
+                "font-family: var(--claude-font-editorial);",
+                "font-size: 17px;",
+                "line-height: 1.55;",
+            ),
+        }
+
+        for selector, declarations in expected_rules.items():
+            match = re.search(re.escape(selector) + r"\s*\{([^}]+)\}", self.css)
+            self.assertIsNotNone(match, selector)
+            for declaration in declarations:
+                self.assertIn(declaration, match.group(1), selector)
+
 
 if __name__ == "__main__":
     unittest.main()
