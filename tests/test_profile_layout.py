@@ -184,6 +184,12 @@ class TypographyStyleTest(unittest.TestCase):
         self.assertIn("family=Source+Sans+3:wght@400;500;600;700", self.html)
         self.assertIn("display=swap", self.html)
 
+    def test_active_theme_stylesheet_is_cache_busted(self):
+        self.assertIn(
+            'href="./assets/css/theme-claude.css?v=20260913-typography"',
+            self.html,
+        )
+
     def test_theme_defines_editorial_and_interface_stacks(self):
         self.assertIn(
             '--claude-font-editorial: "Newsreader", Georgia, "Times New Roman", serif;',

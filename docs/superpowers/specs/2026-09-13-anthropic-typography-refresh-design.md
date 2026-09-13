@@ -26,6 +26,8 @@ Keep the existing preconnect declarations and use `display=swap`. Every declarat
 - Editorial stack: `"Newsreader", Georgia, "Times New Roman", serif`.
 - Interface stack: `"Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`.
 
+Append a typography release version to the active theme stylesheet URL so browsers that previously cached the Inter-based CSS fetch the new typography rules immediately.
+
 ## Typography Mapping
 
 Define two CSS custom properties in `theme-claude.css` for the editorial and interface stacks. Apply them as follows:

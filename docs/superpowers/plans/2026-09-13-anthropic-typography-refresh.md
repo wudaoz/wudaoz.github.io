@@ -170,3 +170,22 @@ Update the three active-theme rules without altering compact mobile overrides, c
 Run: `python3 -m unittest discover -s tests -v`
 
 Expected: all tests pass, and the refreshed About Me region visibly matches the approved 1B hierarchy.
+
+### Task 5: Invalidate the cached Inter-based theme
+
+**Files:**
+- Modify: `tests/test_profile_layout.py`
+- Modify: `index.html`
+- Modify: `docs/superpowers/specs/2026-09-13-anthropic-typography-refresh-design.md`
+
+- [x] **Step 1: Add and run a failing cache-busting test**
+
+Assert that the active theme stylesheet URL includes `?v=20260913-typography`. Verify the focused test fails while the URL remains unversioned.
+
+- [x] **Step 2: Version the active theme stylesheet URL**
+
+Change the link to `./assets/css/theme-claude.css?v=20260913-typography`, forcing existing browser sessions to fetch the Newsreader and Source Sans 3 rules.
+
+- [x] **Step 3: Verify the live page and complete test suite**
+
+Open a fresh local preview and confirm the actual homepage, not a reconstructed sample, displays the approved 1B serif typography. Run all tests and check the final diff.
