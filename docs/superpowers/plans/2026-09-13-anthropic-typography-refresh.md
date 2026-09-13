@@ -89,7 +89,7 @@ Add these properties to `:root`:
 
 - [x] **Step 3: Map typography roles**
 
-Set the body to `var(--claude-font-editorial)`. Add `font-family: var(--claude-font-interface)` to `.top-nav`, `.publications`, and `.site-footer`. Do not change the email declaration, existing sizes, colors, line heights, or responsive rules.
+Set the body to `var(--claude-font-editorial)`. Add `font-family: var(--claude-font-interface)` to `.top-nav`, `.publications`, and `.site-footer`. Keep the email declaration, colors, and responsive rules unchanged.
 
 - [x] **Step 4: Run the focused and complete test suites**
 
@@ -143,3 +143,30 @@ Expected: the implementation commits are clean except for the implementation pla
 git add docs/superpowers/plans/2026-09-13-anthropic-typography-refresh.md
 git commit -m "document typography refresh plan"
 ```
+
+### Task 4: Match the approved 1B preview metrics
+
+**Files:**
+- Modify: `tests/test_profile_layout.py`
+- Modify: `assets/css/theme-claude.css`
+- Modify: `docs/superpowers/specs/2026-09-13-anthropic-typography-refresh-design.md`
+
+- [x] **Step 1: Add a failing regression test for the preview metrics**
+
+Assert that the profile name is 31 px with 1.05 line height, section headings are 20 px with 1.2 line height, and About Me prose is 17 px with 1.55 line height. Require an explicit editorial font declaration on all three roles.
+
+- [x] **Step 2: Verify the test fails against the old dimensions**
+
+Run: `python3 -m unittest tests.test_profile_layout.TypographyStyleTest.test_selected_typography_metrics_match_the_1b_preview -v`
+
+Expected: FAIL because the production profile name is still 28 px with 1.2 line height and the other approved 1B metrics are absent.
+
+- [x] **Step 3: Apply the exact desktop metrics from the approved preview**
+
+Update the three active-theme rules without altering compact mobile overrides, colors, margins, or layout structure.
+
+- [x] **Step 4: Run all tests and inspect the refreshed desktop preview**
+
+Run: `python3 -m unittest discover -s tests -v`
+
+Expected: all tests pass, and the refreshed About Me region visibly matches the approved 1B hierarchy.

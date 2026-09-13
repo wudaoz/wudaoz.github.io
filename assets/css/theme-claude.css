@@ -224,11 +224,12 @@ body.theme-claude .image.avatar img {
 }
 
 body.theme-claude .site-name {
-  font-size: 28px;
+  font-family: var(--claude-font-editorial);
+  font-size: 31px;
   font-weight: 600;
   color: var(--claude-text);
   margin: 0 0 8px;
-  line-height: 1.2;
+  line-height: 1.05;
 }
 
 body.theme-claude .site-email {
@@ -334,8 +335,10 @@ body.theme-claude .section.visible {
 }
 
 body.theme-claude .section-title {
-  font-size: 19px;
+  font-family: var(--claude-font-editorial);
+  font-size: 20px;
   font-weight: 600;
+  line-height: 1.2;
   color: var(--claude-accent);
   margin: 0 0 18px;
   padding-bottom: 10px;
@@ -345,6 +348,12 @@ body.theme-claude .section-title {
 
 body.theme-claude .section-body {
   color: var(--claude-text);
+}
+
+body.theme-claude #about-me .section-body {
+  font-family: var(--claude-font-editorial);
+  font-size: 17px;
+  line-height: 1.55;
 }
 
 body.theme-claude .section-body p {

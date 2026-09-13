@@ -32,14 +32,16 @@ Define two CSS custom properties in `theme-claude.css` for the editorial and int
 
 - Body defaults to the editorial stack.
 - Navigation and buttons use the interface stack.
-- Profile name and section headings inherit the editorial stack at weight 600.
+- Profile name uses the editorial stack at 31 px, weight 600, and 1.05 line height.
+- Section headings use the editorial stack at 20 px, weight 600, and 1.2 line height.
+- About Me prose uses the editorial stack at 17 px and 1.55 line height, matching the approved 1B preview.
 - Email retains its existing monospace stack.
 - Timeline titles, details, and dates use the editorial stack, with existing sizes and colors unchanged.
 - Publication titles, authors, venue lines, and equal-contribution note use the interface stack for dense scanning.
 - Research-interest text remains editorial; emoji and icons are unaffected.
 - Footer uses the interface stack.
 
-No negative letter spacing or viewport-scaled font sizes will be introduced. Existing responsive font sizes remain unchanged.
+No negative letter spacing or viewport-scaled font sizes will be introduced. Existing compact mobile overrides remain unchanged.
 
 ## Compatibility
 
