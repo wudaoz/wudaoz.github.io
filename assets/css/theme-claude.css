@@ -14,6 +14,8 @@
   --claude-social-bg: #FFFFFF;
   --claude-social-text: #8B7355;
   --claude-footer-border: rgba(194, 113, 79, 0.15);
+  --claude-font-editorial: "Newsreader", Georgia, "Times New Roman", serif;
+  --claude-font-interface: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,7 +64,7 @@
 body.theme-claude {
   background-color: var(--claude-bg);
   color: var(--claude-text);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--claude-font-editorial);
   font-size: 16px;
   line-height: 1.65;
   font-weight: 400;
@@ -82,6 +84,7 @@ body.theme-claude .top-nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: var(--claude-font-interface);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -222,7 +225,7 @@ body.theme-claude .image.avatar img {
 
 body.theme-claude .site-name {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--claude-text);
   margin: 0 0 8px;
   line-height: 1.2;
@@ -457,6 +460,7 @@ body.theme-claude .project-card {
 
 /* --- Publications --- */
 body.theme-claude .publications {
+  font-family: var(--claude-font-interface);
   margin-top: 0;
 }
 
@@ -546,6 +550,7 @@ body.theme-claude .site-footer {
   width: 100%;
   flex-basis: 100%;
   text-align: center;
+  font-family: var(--claude-font-interface);
   padding: 32px 24px 40px 380px; /* 增加左边距以避开固定侧边栏 */
   box-sizing: border-box;
   border-top: none !important; /* 强制移除可能继承的边框 */
@@ -586,6 +591,7 @@ body.theme-claude h4 {
 
 body.theme-claude strong {
   color: var(--claude-text);
+  font-weight: 600;
 }
 
 /* --- Responsive: Tablet --- */
