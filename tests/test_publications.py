@@ -44,14 +44,15 @@ class PublicationsParser(HTMLParser):
                 "venue_ranking": [],
             }
         elif tag == "div" and self.current:
-            for field in (
-                "title",
-                "author",
-                "venue_short",
-                "venue_full",
-                "venue_ranking",
-            ):
-                if field in classes:
+            field_classes = {
+                "title": "title",
+                "author": "author",
+                "venue_short": "venue-short",
+                "venue_full": "venue-full",
+                "venue_ranking": "venue-ranking",
+            }
+            for field, class_name in field_classes.items():
+                if class_name in classes:
                     self.active_field = field
         elif tag == "a" and self.current and self.active_field == "title":
             self.current["href"] = attributes.get("href")

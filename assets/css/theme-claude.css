@@ -361,14 +361,18 @@ body.theme-claude .section-body p {
 }
 
 body.theme-claude .section-body a {
-  color: var(--claude-accent);
+  color: var(--claude-text);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.18s ease;
 }
 
-body.theme-claude .section-body a:hover {
+body.theme-claude .section-body a:hover,
+body.theme-claude .section-body a:focus-visible {
   color: var(--claude-accent);
-  filter: brightness(1.2);
+}
+
+body.theme-claude .section-body a strong {
+  color: inherit;
 }
 
 /* --- Cards: no background, clean --- */
@@ -509,8 +513,33 @@ body.theme-claude .publications ol.bibliography li .author {
 
 body.theme-claude .publications ol.bibliography li .periodical {
   font-size: 14px;
-  color: var(--claude-accent);
+  color: var(--claude-text);
   margin-bottom: 6px;
+}
+
+body.theme-claude .venue-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 1px;
+}
+
+body.theme-claude .venue-short {
+  color: var(--claude-text);
+}
+
+body.theme-claude .venue-full {
+  color: var(--claude-secondary);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+body.theme-claude .venue-ranking {
+  color: var(--claude-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 1px;
 }
 
 body.theme-claude .publications ol.bibliography li .links a {
@@ -521,6 +550,53 @@ body.theme-claude .publications ol.bibliography li .links a {
 
 body.theme-claude .publications ol.bibliography li .links a:hover {
   filter: brightness(1.2);
+}
+
+/* --- Services --- */
+body.theme-claude .services {
+  font-family: var(--claude-font-interface);
+}
+
+body.theme-claude .service-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+body.theme-claude .service-period {
+  color: var(--claude-secondary);
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+body.theme-claude .services-list {
+  margin: 0;
+}
+
+body.theme-claude .services-list > div {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 14px;
+  padding: 5px 0;
+}
+
+body.theme-claude .services-list dt,
+body.theme-claude .services-list dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body.theme-claude .services-list dt {
+  color: var(--claude-text);
+  font-weight: 600;
+}
+
+body.theme-claude .services-list dd {
+  color: var(--claude-secondary);
 }
 
 /* --- Awards --- */
@@ -647,6 +723,14 @@ body.theme-claude strong {
 
   body.theme-claude .sidebar-map {
     margin: 24px auto 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body.theme-claude .services-list > div {
+    grid-template-columns: 1fr;
+    gap: 1px;
+    padding: 6px 0;
   }
 }
 
