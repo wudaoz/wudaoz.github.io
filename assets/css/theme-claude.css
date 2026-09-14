@@ -216,11 +216,12 @@ body.theme-claude .image.avatar {
 
 body.theme-claude .image.avatar img {
   width: 220px;
-  height: 220px;
-  border-radius: 50%;
+  height: 280px;
+  border-radius: 0;
   padding: 0;
   box-shadow: 0 6px 24px var(--claude-card-shadow);
   object-fit: cover;
+  object-position: center;
 }
 
 body.theme-claude .site-name {
@@ -712,8 +713,8 @@ body.theme-claude strong {
   }
 
   body.theme-claude .image.avatar img {
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 216px;
   }
 
   body.theme-claude .theme-switcher {
@@ -745,8 +746,8 @@ body.theme-claude strong {
   }
 
   body.theme-claude .image.avatar img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 190px;
   }
 
   body.theme-claude .site-name {
