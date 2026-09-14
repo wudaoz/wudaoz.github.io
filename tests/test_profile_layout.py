@@ -345,23 +345,31 @@ class TypographyStyleTest(unittest.TestCase):
         )
 
     def test_portrait_dimensions_are_rectangular_and_responsive(self):
-        desktop = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", self.css)
-        self.assertIsNotNone(desktop)
-        self.assertIn("width: 220px;", desktop.group(1))
-        self.assertIn("height: 280px;", desktop.group(1))
-        self.assertIn("border-radius: 0;", desktop.group(1))
-        self.assertIn("object-position: center;", desktop.group(1))
+        frame = re.search(r"\.image\.avatar\s*\{([^}]+)\}", self.css)
+        self.assertIsNotNone(frame)
+        self.assertIn("width: 220px;", frame.group(1))
+        self.assertIn("height: 280px;", frame.group(1))
+        self.assertIn("overflow: hidden;", frame.group(1))
+        self.assertIn("border-radius: 0;", frame.group(1))
+
+        image = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", self.css)
+        self.assertIsNotNone(image)
+        self.assertIn("width: 100%;", image.group(1))
+        self.assertIn("height: 100%;", image.group(1))
+        self.assertIn("object-position: center;", image.group(1))
+        self.assertIn("transform: scale(1.25);", image.group(1))
+        self.assertIn("transform-origin: 50% 44%;", image.group(1))
 
         tablet_css = self.css.split("@media (max-width: 1080px)", 1)[1].split(
             "@media (max-width: 640px)", 1
         )[0]
-        tablet = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", tablet_css)
+        tablet = re.search(r"\.image\.avatar\s*\{([^}]+)\}", tablet_css)
         self.assertIsNotNone(tablet)
         self.assertIn("width: 170px;", tablet.group(1))
         self.assertIn("height: 216px;", tablet.group(1))
 
         mobile_css = self.css.split("@media (max-width: 480px)", 1)[1]
-        mobile = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", mobile_css)
+        mobile = re.search(r"\.image\.avatar\s*\{([^}]+)\}", mobile_css)
         self.assertIsNotNone(mobile)
         self.assertIn("width: 150px;", mobile.group(1))
         self.assertIn("height: 190px;", mobile.group(1))
