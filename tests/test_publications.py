@@ -39,14 +39,20 @@ class PublicationsParser(HTMLParser):
                 "author": [],
                 "bold_author": [],
                 "author_sup_count": 0,
-                "venue": [],
+                "venue_short": [],
+                "venue_full": [],
+                "venue_ranking": [],
             }
         elif tag == "div" and self.current:
-            for field in ("title", "author"):
+            for field in (
+                "title",
+                "author",
+                "venue_short",
+                "venue_full",
+                "venue_ranking",
+            ):
                 if field in classes:
                     self.active_field = field
-            if "periodical" in classes:
-                self.active_field = "venue"
         elif tag == "a" and self.current and self.active_field == "title":
             self.current["href"] = attributes.get("href")
         elif tag == "strong" and self.current and self.active_field == "author":
@@ -104,7 +110,6 @@ class PublicationsTest(unittest.TestCase):
     def test_selected_publications_are_in_reverse_chronological_order(self):
         expected_titles = [
             "Cutting the Fuse: Actionable APT Attack Blocking in Provenance-based IDS",
-            "BTDA: A Robust Framework for Encrypted Traffic Classification with Byte-Level TLS Data Augmentation",
             "Sentient: Detecting APTs Via Capturing Indirect Dependencies and Behavioral Logic",
             "SAURONEYES: Disentangling Voluminous Logs to Unveil Camouflaged Attack Intentions",
             "Brewing Vodka: Distilling Pure Knowledge for Lightweight Threat Detection in Audit Logs",
@@ -115,30 +120,56 @@ class PublicationsTest(unittest.TestCase):
         )
 
     def test_titles_link_to_https_sources(self):
-        self.assertEqual(len(self.entries), 5)
+        self.assertEqual(len(self.entries), 4)
         for entry in self.entries:
             self.assertIsNotNone(entry["href"])
             self.assertTrue(entry["href"].startswith("https://"))
+
+        self.assertNotIn("BTDA:", self.html)
+        self.assertNotIn("ICASSP55912", self.html)
 
     def test_weiheng_wu_is_bold_and_equal_contribution_is_marked(self):
         for entry in self.entries:
             self.assertEqual(normalized(entry["bold_author"]), "Weiheng Wu")
 
-        sauroneyes = self.entries[3]
+        sauroneyes = self.entries[2]
         self.assertEqual(sauroneyes["author_sup_count"], 2)
         self.assertIn("* indicates equal contribution.", self.html)
 
-    def test_venue_rankings_are_displayed(self):
+    def test_venue_names_and_rankings_use_separate_lines(self):
         expected_venues = [
-            "USENIX Security 2026 (CCF-A, CORE A*)",
-            "ICASSP 2026 (CCF-B)",
-            "AAAI 2026 (CCF-A, CORE A*)",
-            "IEEE TIFS 2025 (CCF-A)",
-            "WWW 2025 (CCF-A, CORE A*)",
+            (
+                "USENIX Security 2026",
+                "35th USENIX Security Symposium",
+                "CCF-A · CORE A*",
+            ),
+            (
+                "AAAI 2026",
+                "40th AAAI Conference on Artificial Intelligence",
+                "CCF-A · CORE A*",
+            ),
+            (
+                "IEEE TIFS 2025",
+                "IEEE Transactions on Information Forensics and Security",
+                "CCF-A",
+            ),
+            (
+                "WWW 2025",
+                "The ACM Web Conference",
+                "CCF-A · CORE A*",
+            ),
         ]
 
         self.assertEqual(
-            [normalized(entry["venue"]) for entry in self.entries], expected_venues
+            [
+                (
+                    normalized(entry["venue_short"]),
+                    normalized(entry["venue_full"]),
+                    normalized(entry["venue_ranking"]),
+                )
+                for entry in self.entries
+            ],
+            expected_venues,
         )
 
 

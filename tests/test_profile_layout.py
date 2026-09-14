@@ -111,6 +111,27 @@ class ProfileContentTest(unittest.TestCase):
             "http://www.mysmu.edu/faculty/davidlo/",
         )
 
+        school_links = [
+            link.attrs.get("href", "")
+            for link in about[0].find_all(tag="a")
+            if "ucas.ac.cn" in link.attrs.get("href", "")
+            or "smu.edu.sg" in link.attrs.get("href", "")
+        ]
+        self.assertEqual(school_links, [])
+
+    def test_google_scholar_profile_is_linked(self):
+        scholar_links = [
+            link.attrs.get("href")
+            for link in self.document.find_all(tag="a")
+            if link.attrs.get("title") == "Google Scholar"
+        ]
+        self.assertEqual(
+            scholar_links,
+            [
+                "https://scholar.google.com.hk/citations?user=1LfIf6MAAAAJ&hl=zh-CN"
+            ],
+        )
+
     def test_metadata_reflects_current_research(self):
         metadata = {
             node.attrs.get("name"): node.attrs.get("content", "")
@@ -153,6 +174,30 @@ class ProfileContentTest(unittest.TestCase):
         heading = publications[0].find_all(tag="h3", class_name="section-title")
         self.assertEqual([node.text() for node in heading], ["Selected Publications"])
 
+    def test_services_follow_publications_and_match_cv(self):
+        sections = self.document.find_all(tag="div", class_name="section")
+        section_ids = [section.attrs.get("id") for section in sections]
+        self.assertLess(section_ids.index("publications"), section_ids.index("services"))
+        self.assertLess(section_ids.index("services"), section_ids.index("research"))
+
+        services = self.document.find_all(tag="div", element_id="services")
+        self.assertEqual(len(services), 1)
+        heading = services[0].find_all(tag="h3", class_name="section-title")
+        self.assertEqual([node.text() for node in heading], ["Services"])
+        self.assertIn("External Reviewer", services[0].text())
+        self.assertIn("2023 - Present", services[0].text())
+
+        labels = services[0].find_all(tag="dt")
+        values = services[0].find_all(tag="dd")
+        self.assertEqual([node.text() for node in labels], ["Journals", "Conferences"])
+        self.assertEqual(
+            [node.text() for node in values],
+            [
+                "IEEE TDSC · IEEE TIFS · IEEE ToN · IEEE TASE · IEEE ToR",
+                "WWW 2025 & 2026 · AAAI 2026 & 2027 · ICASSP 2026",
+            ],
+        )
+
 
 class TimelineStyleTest(unittest.TestCase):
     def test_marker_is_centered_on_line_in_both_stylesheets(self):
@@ -186,7 +231,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20260913-typography"',
+            'href="./assets/css/theme-claude.css?v=20260914-services"',
             self.html,
         )
 
@@ -255,6 +300,36 @@ class TypographyStyleTest(unittest.TestCase):
             self.assertIsNotNone(match, selector)
             for declaration in declarations:
                 self.assertIn(declaration, match.group(1), selector)
+
+    def test_content_links_have_visible_hover_and_focus_states(self):
+        base = re.search(r"\.section-body a\s*\{([^}]+)\}", self.css)
+        self.assertIsNotNone(base)
+        self.assertIn("color: var(--claude-text);", base.group(1))
+        self.assertIn("transition: color 0.18s ease;", base.group(1))
+
+        self.assertRegex(
+            self.css,
+            r"\.section-body a:hover,\s*body\.theme-claude "
+            r"\.section-body a:focus-visible\s*\{[^}]*"
+            r"color: var\(--claude-accent\);",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.section-body a strong\s*\{[^}]*color: inherit;",
+        )
+
+    def test_venue_and_services_styles_are_defined(self):
+        for selector in (".venue-full", ".venue-ranking"):
+            match = re.search(re.escape(selector) + r"\s*\{([^}]+)\}", self.css)
+            self.assertIsNotNone(match, selector)
+            self.assertIn("color: var(--claude-secondary);", match.group(1), selector)
+
+        self.assertIn("body.theme-claude .services-list", self.css)
+        self.assertRegex(
+            self.css,
+            r"@media \(max-width: 640px\)[\s\S]*"
+            r"\.services-list > div\s*\{[^}]*grid-template-columns: 1fr;",
+        )
 
 
 if __name__ == "__main__":
