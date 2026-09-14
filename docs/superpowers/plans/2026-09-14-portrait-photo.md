@@ -15,9 +15,9 @@
 **Files:**
 - Modify: `tests/test_profile_layout.py`
 
-- [ ] Add assertions for the portrait path, alternative text, rectangular desktop dimensions, square corners, and responsive tablet/mobile dimensions.
-- [ ] Run the profile tests and confirm they fail against the circular illustrated avatar.
-- [ ] Commit the failing test.
+- [x] Add assertions for the portrait path, alternative text, rectangular desktop dimensions, square corners, and responsive tablet/mobile dimensions.
+- [x] Run the profile tests and confirm they fail against the circular illustrated avatar.
+- [x] Commit the failing test.
 
 ### Task 2: Add And Display The Portrait
 
@@ -26,12 +26,12 @@
 - Modify: `index.html`
 - Modify: `assets/css/theme-claude.css`
 
-- [ ] Convert the supplied PNG to a web-optimized JPEG with a maximum dimension of 1200 pixels.
-- [ ] Update the avatar source and accessible alternative text.
-- [ ] Set desktop dimensions to 220 by 280 pixels with zero border radius and centered cover cropping.
-- [ ] Set tablet dimensions to 170 by 216 pixels and mobile dimensions to 150 by 190 pixels.
-- [ ] Bump the stylesheet query version to `20260914-portrait`.
-- [ ] Run all tests and commit the implementation.
+- [x] Convert the supplied PNG to a web-optimized JPEG with a maximum dimension of 1200 pixels.
+- [x] Update the avatar source and accessible alternative text.
+- [x] Set desktop dimensions to 220 by 280 pixels with zero border radius and centered cover cropping.
+- [x] Set tablet dimensions to 170 by 216 pixels and mobile dimensions to 150 by 190 pixels.
+- [x] Bump the stylesheet query version to `20260914-portrait`.
+- [x] Run all tests and commit the implementation.
 
 ### Task 3: Verify The Result
 
@@ -39,5 +39,5 @@
 - Verify: `index.html`
 - Verify: `assets/css/theme-claude.css`
 
-- [ ] Inspect desktop and 390-pixel mobile previews for framing, spacing, and overflow.
-- [ ] Run the complete test suite and repository checks.
+- [x] Inspect desktop and 390-pixel mobile previews for framing, spacing, and overflow.
+- [x] Run the complete test suite and repository checks.
