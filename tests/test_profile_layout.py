@@ -92,6 +92,19 @@ class ProfileContentTest(unittest.TestCase):
         ]
         self.assertEqual(email_links, ["mailto:whwu@smu.edu.sg"])
 
+    def test_sidebar_uses_the_rectangular_portrait_photo(self):
+        avatars = self.document.find_all(tag="img")
+        portrait = next(
+            (
+                image
+                for image in avatars
+                if image.attrs.get("src") == "assets/img/weiheng-wu-portrait.jpg"
+            ),
+            None,
+        )
+        self.assertIsNotNone(portrait)
+        self.assertEqual(portrait.attrs.get("alt"), "Portrait of Weiheng Wu")
+
     def test_about_me_describes_research_and_david_lo(self):
         about = self.document.find_all(tag="div", element_id="about-me")
         self.assertEqual(len(about), 1)
@@ -231,7 +244,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20260914-services"',
+            'href="./assets/css/theme-claude.css?v=20260914-portrait"',
             self.html,
         )
 
@@ -330,6 +343,28 @@ class TypographyStyleTest(unittest.TestCase):
             r"@media \(max-width: 640px\)[\s\S]*"
             r"\.services-list > div\s*\{[^}]*grid-template-columns: 1fr;",
         )
+
+    def test_portrait_dimensions_are_rectangular_and_responsive(self):
+        desktop = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", self.css)
+        self.assertIsNotNone(desktop)
+        self.assertIn("width: 220px;", desktop.group(1))
+        self.assertIn("height: 280px;", desktop.group(1))
+        self.assertIn("border-radius: 0;", desktop.group(1))
+        self.assertIn("object-position: center;", desktop.group(1))
+
+        tablet_css = self.css.split("@media (max-width: 1080px)", 1)[1].split(
+            "@media (max-width: 640px)", 1
+        )[0]
+        tablet = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", tablet_css)
+        self.assertIsNotNone(tablet)
+        self.assertIn("width: 170px;", tablet.group(1))
+        self.assertIn("height: 216px;", tablet.group(1))
+
+        mobile_css = self.css.split("@media (max-width: 480px)", 1)[1]
+        mobile = re.search(r"\.image\.avatar img\s*\{([^}]+)\}", mobile_css)
+        self.assertIsNotNone(mobile)
+        self.assertIn("width: 150px;", mobile.group(1))
+        self.assertIn("height: 190px;", mobile.group(1))
 
 
 if __name__ == "__main__":
