@@ -48,6 +48,6 @@
 - Modify: `tests/test_profile_layout.py`
 - Modify: `assets/css/theme-claude.css`
 
-- [ ] Add a failing assertion for a clipped 125% image zoom and upper-body focal point.
-- [ ] Move fixed dimensions to the avatar frame, clip overflow, and enlarge the image inside it.
-- [ ] Verify the crop at desktop and mobile sizes, run all tests, and commit the adjustment.
+- [x] Add a failing assertion for a clipped 125% image zoom and upper-body focal point.
+- [x] Move fixed dimensions to the avatar frame, clip overflow, and enlarge the image inside it.
+- [x] Verify the crop at desktop and mobile sizes, run all tests, and commit the adjustment.

@@ -244,7 +244,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20260914-portrait"',
+            'href="./assets/css/theme-claude.css?v=20260914-portrait-close"',
             self.html,
         )
 
