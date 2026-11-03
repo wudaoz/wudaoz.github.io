@@ -110,6 +110,7 @@ class PublicationsTest(unittest.TestCase):
 
     def test_selected_publications_are_in_reverse_chronological_order(self):
         expected_titles = [
+            '"Shall We Approve?" Consequence-Aware Approval for Autonomous Coding Agents',
             "Cutting the Fuse: Actionable APT Attack Blocking in Provenance-based IDS",
             "Sentient: Detecting APTs Via Capturing Indirect Dependencies and Behavioral Logic",
             "SAURONEYES: Disentangling Voluminous Logs to Unveil Camouflaged Attack Intentions",
@@ -121,7 +122,7 @@ class PublicationsTest(unittest.TestCase):
         )
 
     def test_titles_link_to_https_sources(self):
-        self.assertEqual(len(self.entries), 4)
+        self.assertEqual(len(self.entries), 5)
         for entry in self.entries:
             self.assertIsNotNone(entry["href"])
             self.assertTrue(entry["href"].startswith("https://"))
@@ -133,12 +134,17 @@ class PublicationsTest(unittest.TestCase):
         for entry in self.entries:
             self.assertEqual(normalized(entry["bold_author"]), "Weiheng Wu")
 
-        sauroneyes = self.entries[2]
+        sauroneyes = self.entries[3]
         self.assertEqual(sauroneyes["author_sup_count"], 2)
         self.assertIn("* indicates equal contribution.", self.html)
 
     def test_venue_names_and_rankings_use_separate_lines(self):
         expected_venues = [
+            (
+                "arXiv 2026",
+                "arXiv preprint arXiv:2610.40753",
+                "Preprint",
+            ),
             (
                 "USENIX Security 2026",
                 "35th USENIX Security Symposium",
