@@ -7,9 +7,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Weiheng Wu (吴伟恒) received his M.S. degree in Cyberspace Security from University of Chinese Academy of Sciences (UCAS). He is currently a Research Engineer at Singapore Management University (SMU). His recent research focuses on AI and agent security.">
+  <meta name="description" content="Weiheng Wu (吴伟恒) is a Research Engineer at Singapore Management University (SMU), working with Prof. David Lo. His recent research focuses on AI safety and agent security. He received his M.S. degree in Cyberspace Security from University of Chinese Academy of Sciences (UCAS).">
 
-  <meta name="keywords" content="Weiheng Wu, 吴伟恒, Singapore Management University, SMU, David Lo, AI Security, Agent Security, UCAS, 中国科学院大学, SZU, 深圳大学, Cyberspace Security, Network Security, Intrusion Detection, APT Detection">
+  <meta name="keywords" content="Weiheng Wu, 吴伟恒, Singapore Management University, SMU, David Lo, AI Safety, AI Security, Agent Security, Coding Agents, UCAS, 中国科学院大学, SZU, 深圳大学, Cyberspace Security, Network Security, Intrusion Detection, APT Detection">
 
   <link rel="canonical" href="https://wudaoz.github.io/" />
 
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="./assets/css/publications-no-dark-mode_old.css">
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261120-wide-layout">
+  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261120-section-nav">
 
 </head>
 
@@ -42,6 +42,14 @@
     <div class="nav-container">
       <div class="nav-left">
         <a href="./index.html">Wu's Homepage</a>
+      </div>
+      <div class="nav-links" aria-label="Sections">
+        <a href="#about-me">About</a>
+        <a href="#news">News</a>
+        <a href="#education-experience">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#services">Services</a>
+        <a href="#research">Research</a>
       </div>
       <div class="nav-right">
         <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
@@ -62,8 +70,8 @@
         <p class="site-email">whwu [at] smu.edu.sg</p>
 
         <div class="social-icons">
-          <a href="mailto:whwu@smu.edu.sg" title="Email">
-            <i class="fa-solid fa-envelope"></i>
+          <a href="https://www.linkedin.com/in/weiheng-wu-61a916438/" title="LinkedIn" target="_blank" rel="noopener noreferrer me">
+            <i class="fa-brands fa-linkedin-in"></i>
           </a>
           <a href="https://github.com/wudaoz" title="GitHub">
             <i class="fa-brands fa-github"></i>
@@ -86,9 +94,9 @@
       <div class="section" id="about-me">
         <h3 class="section-title">About Me</h3>
         <div class="section-body">
-          <p>Hi, my name is Weiheng Wu (吴伟恒). I received my M.S. degree in Cyberspace Security from <strong>University of Chinese Academy of Sciences (UCAS)</strong>. My M.S. research focused on intrusion detection systems for network security.</p>
+          <p>Hi, my name is Weiheng Wu (吴伟恒). I am currently a Research Engineer working with <a href="http://www.mysmu.edu/faculty/davidlo/"><strong>Prof. David Lo</strong></a> (ACM and IEEE Fellow) at <strong>Singapore Management University (SMU)</strong>. Before that, I received my M.S. degree in Cyberspace Security from <strong>University of Chinese Academy of Sciences (UCAS)</strong>, where my research focused on intrusion detection systems for network security.</p>
 
-          <p>I am currently a Research Engineer working with <a href="http://www.mysmu.edu/faculty/davidlo/"><strong>Prof. David Lo</strong></a> (ACM and IEEE Fellow) at <strong>Singapore Management University (SMU)</strong>. My recent research focuses on <strong>security issues in AI and agents</strong>.</p>
+          <p>My recent research focuses on <strong>AI safety</strong>, especially the safety of autonomous coding agents. I am particularly interested in how to oversee what agents actually do: judging an action by its real consequences rather than its surface text, and stopping harmful ones before they take effect.</p>
 
 
         </div>
@@ -257,11 +265,11 @@
           <dl class="services-list">
             <div>
               <dt>Journals</dt>
-              <dd>IEEE TDSC · IEEE TIFS · IEEE ToN · IEEE TASE · IEEE ToR</dd>
+              <dd>ACM TOSEM · IEEE TDSC · IEEE TIFS · IEEE ToN · IEEE TASE · IEEE ToR</dd>
             </div>
             <div>
               <dt>Conferences</dt>
-              <dd>WWW 2025 &amp; 2026 · AAAI 2026 &amp; 2027 · ICASSP 2026</dd>
+              <dd>WWW 2025, 2026 &amp; 2027 · AAAI 2026 &amp; 2027 · ICASSP 2026</dd>
             </div>
           </dl>
         </div>
@@ -273,6 +281,10 @@
         <div class="section-body">
           <div class="awards-grid">
             <div class="award-item">
+              <span class="award-icon">🛡️</span>
+              <div class="award-text"><strong>AI Safety</strong> — safety and oversight of autonomous agents, consequence-aware approval and sandboxed execution of agent actions</div>
+            </div>
+            <div class="award-item">
               <span class="award-icon">🤖</span>
               <div class="award-text"><strong>Coding Agents</strong> — agentic software engineering, code generation, and software development automation</div>
             </div>
@@ -283,10 +295,6 @@
             <div class="award-item">
               <span class="award-icon">🔒</span>
               <div class="award-text"><strong>AI for Security</strong> — Graph neural networks for security, LLM-based security analysis</div>
-            </div>
-            <div class="award-item">
-              <span class="award-icon">📊</span>
-              <div class="award-text"><strong>Traffic Analysis</strong> — Malware traffic detection, encrypted traffic classification</div>
             </div>
           </div>
         </div>
@@ -354,6 +362,61 @@
         document.querySelectorAll('.section').forEach(function(el) {
           observer.observe(el);
         });
+      }
+
+      // Highlight the nav link of the section currently in view
+      var navBox = document.querySelector('.nav-links');
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+      var navTargets = navLinks.map(function(link) {
+        return document.getElementById(link.getAttribute('href').slice(1));
+      });
+      var navCurrent = -1;
+      var navLockUntil = 0;
+      var navTicking = false;
+
+      function setActiveNav(current) {
+        if (current === navCurrent) return;
+        navCurrent = current;
+        navLinks.forEach(function(link, index) {
+          link.classList.toggle('active', index === current);
+        });
+        // On narrow screens the links scroll sideways: keep the active one in view
+        if (navBox.scrollWidth > navBox.clientWidth) {
+          var linkBox = navLinks[current].getBoundingClientRect();
+          var boxLeft = navBox.getBoundingClientRect().left;
+          navBox.scrollLeft += linkBox.left - boxLeft - (navBox.clientWidth - linkBox.width) / 2;
+        }
+      }
+
+      function updateActiveNav() {
+        navTicking = false;
+        // A clicked link stays highlighted while the page scrolls to it
+        if (Date.now() < navLockUntil) return;
+        var current = 0;
+        navTargets.forEach(function(target, index) {
+          if (target && target.getBoundingClientRect().top <= 120) current = index;
+        });
+        var doc = document.documentElement;
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+          current = navLinks.length - 1;
+        }
+        setActiveNav(current);
+      }
+
+      if (navLinks.length) {
+        navLinks.forEach(function(link, index) {
+          link.addEventListener('click', function() {
+            setActiveNav(index);
+            navLockUntil = Date.now() + 1000;
+          });
+        });
+        window.addEventListener('scroll', function() {
+          if (!navTicking) {
+            navTicking = true;
+            window.requestAnimationFrame(updateActiveNav);
+          }
+        }, { passive: true });
+        updateActiveNav();
       }
     })();
   </script>

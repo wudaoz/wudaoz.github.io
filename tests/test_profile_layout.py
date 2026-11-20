@@ -81,16 +81,47 @@ class ProfileContentTest(unittest.TestCase):
         self.assertIsNotNone(homepage)
         self.assertEqual(homepage.attrs.get("href"), "./index.html")
 
-    def test_smu_email_is_displayed_and_linked(self):
+    def test_navigation_links_jump_to_each_section(self):
+        nav_links = self.document.find_all(tag="div", class_name="nav-links")
+        self.assertEqual(len(nav_links), 1)
+        targets = [
+            (link.text(), link.attrs.get("href"))
+            for link in nav_links[0].find_all(tag="a")
+        ]
+        self.assertEqual(
+            targets,
+            [
+                ("About", "#about-me"),
+                ("News", "#news"),
+                ("Experience", "#education-experience"),
+                ("Publications", "#publications"),
+                ("Services", "#services"),
+                ("Research", "#research"),
+            ],
+        )
+
+        section_ids = [
+            section.attrs.get("id")
+            for section in self.document.find_all(tag="div", class_name="section")
+        ]
+        self.assertEqual([href[1:] for _, href in targets], section_ids)
+
+    def test_smu_email_is_displayed_and_linkedin_replaces_mail_icon(self):
         email_text = self.document.find_all(tag="p", class_name="site-email")
         self.assertEqual([node.text() for node in email_text], ["whwu [at] smu.edu.sg"])
 
-        email_links = [
-            node.attrs.get("href")
-            for node in self.document.find_all(tag="a")
-            if node.attrs.get("title") == "Email"
-        ]
-        self.assertEqual(email_links, ["mailto:whwu@smu.edu.sg"])
+        links = self.document.find_all(tag="a")
+        self.assertEqual(
+            [node for node in links if node.attrs.get("title") == "Email"], []
+        )
+        self.assertEqual(
+            [
+                node.attrs.get("href")
+                for node in links
+                if node.attrs.get("title") == "LinkedIn"
+            ],
+            ["https://www.linkedin.com/in/weiheng-wu-61a916438/"],
+        )
 
     def test_sidebar_uses_the_rectangular_portrait_photo(self):
         avatars = self.document.find_all(tag="img")
@@ -110,7 +141,11 @@ class ProfileContentTest(unittest.TestCase):
         self.assertEqual(len(about), 1)
         about_text = about[0].text()
         self.assertIn("intrusion detection systems for network security", about_text)
-        self.assertIn("security issues in AI and agents", about_text)
+        self.assertIn("AI safety", about_text)
+        self.assertLess(
+            about_text.index("Singapore Management University (SMU)"),
+            about_text.index("University of Chinese Academy of Sciences (UCAS)"),
+        )
         self.assertIn("Prof. David Lo (ACM and IEEE Fellow)", about_text)
 
         david_links = [
@@ -151,7 +186,8 @@ class ProfileContentTest(unittest.TestCase):
             for node in self.document.find_all(tag="meta")
             if node.attrs.get("name")
         }
-        self.assertIn("AI and agent security", metadata["description"])
+        self.assertIn("AI safety and agent security", metadata["description"])
+        self.assertIn("AI Safety", metadata["keywords"])
         self.assertIn("Agent Security", metadata["keywords"])
 
     def test_education_and_experience_share_one_timeline(self):
@@ -206,8 +242,8 @@ class ProfileContentTest(unittest.TestCase):
         self.assertEqual(
             [node.text() for node in values],
             [
-                "IEEE TDSC · IEEE TIFS · IEEE ToN · IEEE TASE · IEEE ToR",
-                "WWW 2025 & 2026 · AAAI 2026 & 2027 · ICASSP 2026",
+                "ACM TOSEM · IEEE TDSC · IEEE TIFS · IEEE ToN · IEEE TASE · IEEE ToR",
+                "WWW 2025, 2026 & 2027 · AAAI 2026 & 2027 · ICASSP 2026",
             ],
         )
 
@@ -244,7 +280,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20261120-wide-layout"',
+            'href="./assets/css/theme-claude.css?v=20261120-section-nav"',
             self.html,
         )
 
