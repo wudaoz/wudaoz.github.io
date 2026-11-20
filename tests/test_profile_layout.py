@@ -93,8 +93,8 @@ class ProfileContentTest(unittest.TestCase):
             [
                 ("About", "#about-me"),
                 ("News", "#news"),
-                ("Experience", "#education-experience"),
                 ("Publications", "#publications"),
+                ("Experience", "#education-experience"),
                 ("Services", "#services"),
                 ("Research", "#research"),
             ],
@@ -280,7 +280,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20261120-section-nav"',
+            'href="./assets/css/theme-claude.css?v=20261120-unified-type"',
             self.html,
         )
 
@@ -308,7 +308,12 @@ class TypographyStyleTest(unittest.TestCase):
         self.assertRegex(
             self.css,
             r"\.publications\s*\{[^}]*font-family: "
-            r"var\(--claude-font-interface\);",
+            r"var\(--claude-font-editorial\);",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.services\s*\{[^}]*font-family: "
+            r"var\(--claude-font-editorial\);",
         )
         self.assertRegex(
             self.css,
@@ -316,31 +321,30 @@ class TypographyStyleTest(unittest.TestCase):
             r"var\(--claude-font-interface\);",
         )
 
-    def test_email_keeps_monospace_role(self):
+    def test_email_uses_interface_role(self):
         match = re.search(r"\.site-email\s*\{([^}]+)\}", self.css)
         self.assertIsNotNone(match)
-        self.assertIn(
-            'font-family: "Ubuntu Mono", "SF Mono", monospace;', match.group(1)
-        )
+        self.assertIn("font-family: var(--claude-font-interface);", match.group(1))
+        self.assertNotIn("monospace", match.group(1))
 
     def test_selected_typography_metrics_match_the_1b_preview(self):
         expected_rules = {
             ".site-name": (
                 "font-family: var(--claude-font-editorial);",
-                "font-size: 31px;",
+                "font-size: 33px;",
                 "font-weight: 600;",
                 "line-height: 1.05;",
             ),
             ".section-title": (
                 "font-family: var(--claude-font-editorial);",
-                "font-size: 20px;",
+                "font-size: 23px;",
                 "font-weight: 600;",
                 "line-height: 1.2;",
             ),
             "#about-me .section-body": (
                 "font-family: var(--claude-font-editorial);",
-                "font-size: 17px;",
-                "line-height: 1.55;",
+                "font-size: 19px;",
+                "line-height: 1.6;",
             ),
         }
 
