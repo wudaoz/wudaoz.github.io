@@ -90,7 +90,7 @@ body.theme-claude .top-nav {
 }
 
 body.theme-claude .nav-container {
-  max-width: 1120px;
+  max-width: 1280px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -175,7 +175,7 @@ body.theme-claude .dot-fusion { background: #B5654A; }
 
 /* --- Wrapper: two-column layout --- */
 body.theme-claude .wrapper {
-  max-width: 1120px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -186,10 +186,10 @@ body.theme-claude .wrapper {
 
 /* --- Sidebar: fixed, top-aligned --- */
 body.theme-claude .sidebar {
-  width: 320px;
+  width: 280px;
   flex-shrink: 0;
   position: fixed; /* 从 sticky 改为 fixed，确保完全固定 */
-  left: calc(50% - 560px); /* 560px 是 wrapper 1120px 的一半 */
+  left: max(0px, calc(50% - 640px)); /* 640px 是 wrapper 1280px 的一半 */
   top: 60px; /* 为顶栏留出空间 */
   height: calc(100vh - 60px);
   overflow-y: auto;
@@ -324,9 +324,9 @@ body.theme-claude .social-icons a i {
 body.theme-claude .content {
   flex: 1;
   min-width: 0;
-  padding: 120px 40px 80px 60px; /* 顶部增加 padding 往下挪 */
+  padding: 120px 40px 80px 56px; /* 顶部增加 padding 往下挪 */
   box-sizing: border-box;
-  margin-left: 320px; /* 为左侧固定栏留出空间 */
+  margin-left: 280px; /* 为左侧固定栏留出空间 */
 }
 
 /* --- Sections --- */
