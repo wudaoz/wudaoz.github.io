@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="./assets/css/publications-no-dark-mode_old.css">
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261120-section-nav">
+  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261120-unified-type">
 
 </head>
 
@@ -46,8 +46,8 @@
       <div class="nav-links" aria-label="Sections">
         <a href="#about-me">About</a>
         <a href="#news">News</a>
-        <a href="#education-experience">Experience</a>
         <a href="#publications">Publications</a>
+        <a href="#education-experience">Experience</a>
         <a href="#services">Services</a>
         <a href="#research">Research</a>
       </div>
@@ -96,7 +96,7 @@
         <div class="section-body">
           <p>Hi, my name is Weiheng Wu (吴伟恒). I am currently a Research Engineer working with <a href="http://www.mysmu.edu/faculty/davidlo/"><strong>Prof. David Lo</strong></a> (ACM and IEEE Fellow) at <strong>Singapore Management University (SMU)</strong>. Before that, I received my M.S. degree in Cyberspace Security from <strong>University of Chinese Academy of Sciences (UCAS)</strong>, where my research focused on intrusion detection systems for network security.</p>
 
-          <p>My recent research focuses on <strong>AI safety</strong>, especially the safety of autonomous coding agents. I am particularly interested in how to oversee what agents actually do: judging an action by its real consequences rather than its surface text, and stopping harmful ones before they take effect.</p>
+          <p>My recent research focuses on <strong>AI safety</strong>, especially the security of coding agents in real-world software development. I study the risks that arise when agents act autonomously, such as privilege overreach and data leakage, and how to make the underlying models safer through safety alignment, including post-training methods. For example, <a href="https://arxiv.org/abs/2610.40753" target="_blank" rel="noopener noreferrer"><strong>our recent work</strong></a> examines design limitations in the auto mode of Claude Code and proposes a consequence-aware approval method to address them.</p>
 
 
         </div>
@@ -121,54 +121,6 @@
               <div class="experience-content">
                 <p class="exp-period"><strong>2026.05</strong></p>
                 <p class="exp-detail">Our paper "Cutting the Fuse: Actionable APT Attack Blocking in Provenance-based IDS" was accepted to <strong>USENIX Security 2026</strong>!</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Education & Experience -->
-      <div class="section" id="education-experience">
-        <h3 class="section-title">Education &amp; Experience</h3>
-        <div class="section-body">
-
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <div class="experience-content">
-                <p class="exp-title"><strong>Singapore Management University (SMU)</strong></p>
-                <p class="exp-detail">Research Engineer with Prof. David Lo</p>
-                <p class="exp-period">2026 - Present</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <div class="experience-content">
-                <p class="exp-title"><strong>Alibaba Group</strong></p>
-                <p class="exp-detail">Research Intern</p>
-                <p class="exp-period">2025 - 2026</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <div class="experience-content">
-                <p class="exp-title"><strong>University of Chinese Academy of Sciences (UCAS)</strong></p>
-                <p class="exp-detail">M.S. in Cyberspace Security</p>
-                <p class="exp-period">2023 - 2026</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card timeline-item">
-            <div class="experience-item">
-              <div class="experience-content">
-                <p class="exp-title"><strong>Shenzhen University (SZU)</strong></p>
-                <p class="exp-detail">B.E. in Electronic Information Engineering</p>
-                <p class="exp-period">2019 - 2023</p>
               </div>
             </div>
           </div>
@@ -254,6 +206,54 @@
         </div>
       </div>
 
+      <!-- Education & Experience -->
+      <div class="section" id="education-experience">
+        <h3 class="section-title">Education &amp; Experience</h3>
+        <div class="section-body">
+
+          <div class="card timeline-item">
+            <div class="experience-item">
+              <div class="experience-content">
+                <p class="exp-title"><strong>Singapore Management University (SMU)</strong></p>
+                <p class="exp-detail">Research Engineer with Prof. David Lo</p>
+                <p class="exp-period">2026 - Present</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card timeline-item">
+            <div class="experience-item">
+              <div class="experience-content">
+                <p class="exp-title"><strong>Alibaba Group</strong></p>
+                <p class="exp-detail">Research Intern</p>
+                <p class="exp-period">2025 - 2026</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card timeline-item">
+            <div class="experience-item">
+              <div class="experience-content">
+                <p class="exp-title"><strong>University of Chinese Academy of Sciences (UCAS)</strong></p>
+                <p class="exp-detail">M.S. in Cyberspace Security</p>
+                <p class="exp-period">2023 - 2026</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card timeline-item">
+            <div class="experience-item">
+              <div class="experience-content">
+                <p class="exp-title"><strong>Shenzhen University (SZU)</strong></p>
+                <p class="exp-detail">B.E. in Electronic Information Engineering</p>
+                <p class="exp-period">2019 - 2023</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Services -->
       <div class="section" id="services">
         <h3 class="section-title">Services</h3>
@@ -282,7 +282,7 @@
           <div class="awards-grid">
             <div class="award-item">
               <span class="award-icon">🛡️</span>
-              <div class="award-text"><strong>AI Safety</strong> — safety and oversight of autonomous agents, consequence-aware approval and sandboxed execution of agent actions</div>
+              <div class="award-text"><strong>AI Safety</strong> — agent security and oversight, safety alignment of LLMs</div>
             </div>
             <div class="award-item">
               <span class="award-icon">🤖</span>
