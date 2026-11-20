@@ -65,7 +65,7 @@ body.theme-claude {
   background-color: var(--claude-bg);
   color: var(--claude-text);
   font-family: var(--claude-font-editorial);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.65;
   font-weight: 400;
   padding: 0;
@@ -101,7 +101,7 @@ body.theme-claude .nav-container {
 
 body.theme-claude .nav-left a {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 19px;
   color: var(--claude-text);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -125,7 +125,7 @@ body.theme-claude .nav-links {
 }
 
 body.theme-claude .nav-links a {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--claude-secondary);
   text-decoration: none;
@@ -286,17 +286,17 @@ body.theme-claude .image.avatar img {
 
 body.theme-claude .site-name {
   font-family: var(--claude-font-editorial);
-  font-size: 31px;
+  font-size: 33px;
   font-weight: 600;
   color: var(--claude-text);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   line-height: 1.05;
 }
 
 body.theme-claude .site-email {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--claude-secondary);
-  font-family: "Ubuntu Mono", "SF Mono", monospace;
+  font-family: var(--claude-font-interface);
   margin: 0 0 24px;
   word-break: break-all;
 }
@@ -397,7 +397,7 @@ body.theme-claude .section.visible {
 
 body.theme-claude .section-title {
   font-family: var(--claude-font-editorial);
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 600;
   line-height: 1.2;
   color: var(--claude-accent);
@@ -413,8 +413,8 @@ body.theme-claude .section-body {
 
 body.theme-claude #about-me .section-body {
   font-family: var(--claude-font-editorial);
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 19px;
+  line-height: 1.6;
 }
 
 body.theme-claude .section-body p {
@@ -511,17 +511,17 @@ body.theme-claude .experience-content p {
 }
 
 body.theme-claude .exp-title {
-  font-size: 15px;
+  font-size: 17.5px;
   color: var(--claude-text);
 }
 
 body.theme-claude .exp-detail {
-  font-size: 14px;
+  font-size: 16.5px;
   color: var(--claude-secondary);
 }
 
 body.theme-claude .exp-period {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--claude-accent);
   font-weight: 500;
 }
@@ -534,8 +534,13 @@ body.theme-claude .project-card {
 
 /* --- Publications --- */
 body.theme-claude .publications {
-  font-family: var(--claude-font-interface);
+  font-family: var(--claude-font-editorial);
   margin-top: 0;
+}
+
+body.theme-claude .pub-note {
+  font-size: 15px;
+  color: var(--claude-secondary);
 }
 
 body.theme-claude .publications ol.bibliography {
@@ -561,19 +566,20 @@ body.theme-claude .pub-content {
 
 body.theme-claude .publications ol.bibliography li .title {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 18px;
+  line-height: 1.4;
   color: var(--claude-text);
   margin-bottom: 4px;
 }
 
 body.theme-claude .publications ol.bibliography li .author {
-  font-size: 14px;
+  font-size: 16.5px;
   color: var(--claude-secondary);
   margin-bottom: 4px;
 }
 
 body.theme-claude .publications ol.bibliography li .periodical {
-  font-size: 14px;
+  font-size: 16.5px;
   color: var(--claude-text);
   margin-bottom: 6px;
 }
@@ -592,20 +598,20 @@ body.theme-claude .venue-short {
 
 body.theme-claude .venue-full {
   color: var(--claude-secondary);
-  font-size: 13px;
+  font-size: 15.5px;
   font-weight: 400;
 }
 
 body.theme-claude .venue-ranking {
   color: var(--claude-secondary);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   margin-top: 1px;
 }
 
 body.theme-claude .publications ol.bibliography li .links a {
   color: var(--claude-accent);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -615,7 +621,7 @@ body.theme-claude .publications ol.bibliography li .links a:hover {
 
 /* --- Services --- */
 body.theme-claude .services {
-  font-family: var(--claude-font-interface);
+  font-family: var(--claude-font-editorial);
 }
 
 body.theme-claude .service-heading {
@@ -624,13 +630,13 @@ body.theme-claude .service-heading {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 12px;
-  font-size: 15px;
+  font-size: 17.5px;
 }
 
 body.theme-claude .service-period {
   color: var(--claude-secondary);
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 body.theme-claude .services-list {
@@ -639,7 +645,7 @@ body.theme-claude .services-list {
 
 body.theme-claude .services-list > div {
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
+  grid-template-columns: 120px minmax(0, 1fr);
   gap: 14px;
   padding: 5px 0;
 }
@@ -647,7 +653,7 @@ body.theme-claude .services-list > div {
 body.theme-claude .services-list dt,
 body.theme-claude .services-list dd {
   margin: 0;
-  font-size: 14px;
+  font-size: 16.5px;
   line-height: 1.5;
 }
 
@@ -676,12 +682,12 @@ body.theme-claude .award-item {
 }
 
 body.theme-claude .award-icon {
-  font-size: 20px;
+  font-size: 22px;
   flex-shrink: 0;
 }
 
 body.theme-claude .award-text {
-  font-size: 14px;
+  font-size: 16.5px;
   color: var(--claude-text);
 }
 
@@ -703,7 +709,7 @@ body.theme-claude .site-footer {
 }
 
 body.theme-claude .site-footer p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--claude-secondary);
   margin: 0;
   padding-top: 20px;
@@ -810,7 +816,7 @@ body.theme-claude strong {
   }
 
   body.theme-claude .nav-links a {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -838,7 +844,7 @@ body.theme-claude strong {
   }
 
   body.theme-claude .site-name {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   body.theme-claude .content {
@@ -855,7 +861,11 @@ body.theme-claude strong {
   }
 
   body.theme-claude .section-title {
-    font-size: 17px;
+    font-size: 20px;
+  }
+
+  body.theme-claude #about-me .section-body {
+    font-size: 17.5px;
   }
 
   body.theme-claude .publications ol.bibliography li {
@@ -863,12 +873,12 @@ body.theme-claude strong {
   }
 
   body.theme-claude .publications ol.bibliography li .title {
-    font-size: 14px;
+    font-size: 16.5px;
   }
 
   body.theme-claude .publications ol.bibliography li .author,
   body.theme-claude .publications ol.bibliography li .periodical {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   body.theme-claude .experience-item {
@@ -892,6 +902,6 @@ body.theme-claude strong {
   }
 
   body.theme-claude .award-text {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
