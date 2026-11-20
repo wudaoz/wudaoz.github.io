@@ -210,10 +210,10 @@ body.theme-claude .profile-card {
 }
 
 body.theme-claude .image.avatar {
-  margin: 0 auto 32px;
+  margin: 0 auto 24px;
   display: block;
-  width: 220px;
-  height: 280px;
+  width: 160px;
+  height: 204px;
   overflow: hidden;
   border-radius: 0;
   box-shadow: 0 6px 24px var(--claude-card-shadow);
@@ -720,8 +720,8 @@ body.theme-claude strong {
   }
 
   body.theme-claude .image.avatar {
-    width: 170px;
-    height: 216px;
+    width: 136px;
+    height: 173px;
   }
 
   body.theme-claude .theme-switcher {
@@ -753,8 +753,8 @@ body.theme-claude strong {
   }
 
   body.theme-claude .image.avatar {
-    width: 150px;
-    height: 190px;
+    width: 120px;
+    height: 153px;
   }
 
   body.theme-claude .site-name {

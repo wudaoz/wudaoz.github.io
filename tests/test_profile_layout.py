@@ -244,7 +244,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20260914-portrait-close"',
+            'href="./assets/css/theme-claude.css?v=20261120-portrait-compact"',
             self.html,
         )
 
@@ -347,8 +347,8 @@ class TypographyStyleTest(unittest.TestCase):
     def test_portrait_dimensions_are_rectangular_and_responsive(self):
         frame = re.search(r"\.image\.avatar\s*\{([^}]+)\}", self.css)
         self.assertIsNotNone(frame)
-        self.assertIn("width: 220px;", frame.group(1))
-        self.assertIn("height: 280px;", frame.group(1))
+        self.assertIn("width: 160px;", frame.group(1))
+        self.assertIn("height: 204px;", frame.group(1))
         self.assertIn("overflow: hidden;", frame.group(1))
         self.assertIn("border-radius: 0;", frame.group(1))
 
@@ -365,14 +365,14 @@ class TypographyStyleTest(unittest.TestCase):
         )[0]
         tablet = re.search(r"\.image\.avatar\s*\{([^}]+)\}", tablet_css)
         self.assertIsNotNone(tablet)
-        self.assertIn("width: 170px;", tablet.group(1))
-        self.assertIn("height: 216px;", tablet.group(1))
+        self.assertIn("width: 136px;", tablet.group(1))
+        self.assertIn("height: 173px;", tablet.group(1))
 
         mobile_css = self.css.split("@media (max-width: 480px)", 1)[1]
         mobile = re.search(r"\.image\.avatar\s*\{([^}]+)\}", mobile_css)
         self.assertIsNotNone(mobile)
-        self.assertIn("width: 150px;", mobile.group(1))
-        self.assertIn("height: 190px;", mobile.group(1))
+        self.assertIn("width: 120px;", mobile.group(1))
+        self.assertIn("height: 153px;", mobile.group(1))
 
 
 if __name__ == "__main__":
