@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -31,7 +33,7 @@
   <link rel="stylesheet" href="./assets/css/publications-no-dark-mode_old.css">
 
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261120-unified-type">
+  <link rel="stylesheet" href="./assets/css/theme-claude.css?v=20261121-blog">
 
 </head>
 
@@ -50,6 +52,7 @@
         <a href="#education-experience">Experience</a>
         <a href="#services">Services</a>
         <a href="#research">Research</a>
+        <a href="./blog/">Blog</a>
       </div>
       <div class="nav-right">
         <button id="themeToggle" class="theme-toggle" title="Toggle Dark Mode">
@@ -203,6 +206,26 @@
 
             </ol>
           </div>
+        </div>
+      </div>
+
+      <!-- Blog: the three latest posts from _posts/ (filled in by GitHub Pages; needs the front matter at the top of this file) -->
+      <div class="section" id="blog">
+        <h3 class="section-title">Blog</h3>
+        <div class="section-body">
+          <div class="blog-latest">
+            {% for post in site.posts limit:3 %}
+            <div class="card timeline-item">
+              <div class="experience-item">
+                <div class="experience-content">
+                  <p class="exp-period"><strong>{{ post.date | date: "%Y.%m.%d" }}</strong></p>
+                  <p class="exp-detail"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <p class="section-more"><a href="./blog/">All posts &rarr;</a></p>
         </div>
       </div>
 
@@ -368,7 +391,9 @@
       var navBox = document.querySelector('.nav-links');
       var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
       var navTargets = navLinks.map(function(link) {
-        return document.getElementById(link.getAttribute('href').slice(1));
+        var href = link.getAttribute('href');
+        // "#id" links point at a section; the Blog link maps to the Blog section
+        return document.getElementById(href.charAt(0) === '#' ? href.slice(1) : 'blog');
       });
       var navCurrent = -1;
       var navLockUntil = 0;
@@ -392,13 +417,26 @@
         navTicking = false;
         // A clicked link stays highlighted while the page scrolls to it
         if (Date.now() < navLockUntil) return;
+        // Current = the section whose top most recently passed under the top bar
         var current = 0;
+        var currentTop = -Infinity;
+        var last = 0;
+        var lastTop = -Infinity;
         navTargets.forEach(function(target, index) {
-          if (target && target.getBoundingClientRect().top <= 120) current = index;
+          if (!target) return;
+          var top = target.getBoundingClientRect().top;
+          if (top <= 120 && top > currentTop) {
+            current = index;
+            currentTop = top;
+          }
+          if (top > lastTop) {
+            last = index;
+            lastTop = top;
+          }
         });
         var doc = document.documentElement;
         if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
-          current = navLinks.length - 1;
+          current = last;
         }
         setActiveNav(current);
       }
@@ -406,6 +444,7 @@
       if (navLinks.length) {
         navLinks.forEach(function(link, index) {
           link.addEventListener('click', function() {
+            if (link.getAttribute('href').charAt(0) !== '#') return;
             setActiveNav(index);
             navLockUntil = Date.now() + 1000;
           });
