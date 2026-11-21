@@ -1,0 +1,23 @@
+# Site settings for GitHub Pages (Jekyll). The homepage is plain HTML;
+# Jekyll is only used to turn the Markdown files in _posts/ into blog pages.
+title: "Weiheng Wu"
+description: "Homepage and blog of Weiheng Wu"
+url: "https://wudaoz.github.io"
+baseurl: ""
+timezone: Asia/Singapore
+
+markdown: kramdown
+permalink: /blog/:year/:month/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - tests
+  - docs
+  - README.md
+  - LICENSE.md
