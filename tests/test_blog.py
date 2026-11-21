@@ -48,11 +48,12 @@ class BlogStructureTest(unittest.TestCase):
             self.assertIsNotNone(date, post.name)
             self.assertEqual(date.group(1), post.name[:10], post.name)
 
-    def test_homepage_shows_latest_posts_and_links_to_blog(self):
+    def test_homepage_only_links_to_blog_from_the_menu(self):
         html = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertTrue(html.startswith("---\n"), "index.html needs front matter")
-        self.assertIn("{% for post in site.posts limit:3 %}", html)
-        self.assertIn('<a href="./blog/">All posts &rarr;</a>', html)
+        self.assertTrue(html.startswith("<!DOCTYPE html>"))
+        self.assertEqual(html.count('<a href="./blog/">Blog</a>'), 1)
+        self.assertNotIn('id="blog"', html)
+        self.assertNotIn("site.posts", html)
 
 
 if __name__ == "__main__":
