@@ -106,15 +106,10 @@ class ProfileContentTest(unittest.TestCase):
             for section in self.document.find_all(tag="div", class_name="section")
         ]
         # Every "#id" link has a section, in page order; the Blog link opens
-        # the separate /blog/ page and has no anchor of its own.
+        # the separate /blog/ page, and the homepage has no Blog section.
         anchors = [href[1:] for _, href in targets if href.startswith("#")]
-        self.assertEqual(anchors, [sid for sid in section_ids if sid != "blog"])
-        self.assertLess(
-            section_ids.index("publications"), section_ids.index("blog")
-        )
-        self.assertLess(
-            section_ids.index("blog"), section_ids.index("education-experience")
-        )
+        self.assertEqual(anchors, section_ids)
+        self.assertNotIn("blog", section_ids)
 
     def test_smu_email_is_displayed_and_linkedin_replaces_mail_icon(self):
         email_text = self.document.find_all(tag="p", class_name="site-email")
