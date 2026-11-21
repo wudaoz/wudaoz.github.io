@@ -432,6 +432,17 @@ body.theme-claude .section-body a:focus-visible {
   color: var(--claude-accent);
 }
 
+body.theme-claude .section-more {
+  margin: 4px 0 0;
+  font-family: var(--claude-font-interface);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+body.theme-claude .section-body .section-more a {
+  color: var(--claude-accent);
+}
+
 body.theme-claude .section-body a strong {
   color: inherit;
 }
