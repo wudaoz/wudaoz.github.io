@@ -97,6 +97,7 @@ class ProfileContentTest(unittest.TestCase):
                 ("Experience", "#education-experience"),
                 ("Services", "#services"),
                 ("Research", "#research"),
+                ("Blog", "./blog/"),
             ],
         )
 
@@ -104,7 +105,16 @@ class ProfileContentTest(unittest.TestCase):
             section.attrs.get("id")
             for section in self.document.find_all(tag="div", class_name="section")
         ]
-        self.assertEqual([href[1:] for _, href in targets], section_ids)
+        # Every "#id" link has a section, in page order; the Blog link opens
+        # the separate /blog/ page and has no anchor of its own.
+        anchors = [href[1:] for _, href in targets if href.startswith("#")]
+        self.assertEqual(anchors, [sid for sid in section_ids if sid != "blog"])
+        self.assertLess(
+            section_ids.index("publications"), section_ids.index("blog")
+        )
+        self.assertLess(
+            section_ids.index("blog"), section_ids.index("education-experience")
+        )
 
     def test_smu_email_is_displayed_and_linkedin_replaces_mail_icon(self):
         email_text = self.document.find_all(tag="p", class_name="site-email")
@@ -280,7 +290,7 @@ class TypographyStyleTest(unittest.TestCase):
 
     def test_active_theme_stylesheet_is_cache_busted(self):
         self.assertIn(
-            'href="./assets/css/theme-claude.css?v=20261120-unified-type"',
+            'href="./assets/css/theme-claude.css?v=20261121-blog"',
             self.html,
         )
 
