@@ -227,6 +227,29 @@ body.theme-claude .post-content img {
   border-radius: 6px;
 }
 
+body.theme-claude .post-content figure {
+  margin: 1.8em 0;
+}
+
+body.theme-claude .post-content figure img {
+  max-width: min(100%, 520px);
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border: 1px solid var(--claude-footer-border);
+}
+
+body.theme-claude .post-content figcaption {
+  max-width: 600px;
+  margin: 12px auto 0;
+  font-family: var(--claude-font-interface);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--claude-secondary);
+  text-align: center;
+}
+
 body.theme-claude .post-content hr {
   border: 0;
   border-top: 1px solid var(--claude-footer-border);
