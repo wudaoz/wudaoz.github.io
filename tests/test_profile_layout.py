@@ -172,6 +172,16 @@ class ProfileContentTest(unittest.TestCase):
         ]
         self.assertEqual(school_links, [])
 
+    def test_sidebar_shows_the_visitor_map(self):
+        maps = self.document.find_all(tag="div", class_name="sidebar-map")
+        self.assertEqual(len(maps), 1)
+        scripts = maps[0].find_all(tag="script")
+        self.assertEqual(len(scripts), 1)
+        self.assertEqual(scripts[0].attrs.get("id"), "mapmyvisitors")
+        self.assertTrue(
+            scripts[0].attrs.get("src", "").startswith("https://mapmyvisitors.com/map.js?d=")
+        )
+
     def test_google_scholar_profile_is_linked(self):
         scholar_links = [
             link.attrs.get("href")
